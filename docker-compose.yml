@@ -17,6 +17,10 @@ services:
     restart: always
     ports:
       - "9100:9100"
+    volumes:
+      - ./metrics:/metrics
+    command:
+      - '--collector.textfile.directory=/metrics'
 
   grafana:
     image: grafana/grafana

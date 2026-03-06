@@ -1,0 +1,3 @@
+# HELP ssh_failed_logins Number of failed SSH login attempts
+# TYPE ssh_failed_logins gauge
+ssh_failed_logins 0

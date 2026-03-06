@@ -1,7 +1,7 @@
 #!/bin/bash
 
+METRIC_FILE="/metrics/network_connections.prom"
+
 CONNECTIONS=$(ss -tun | wc -l)
 
-if [ "$CONNECTIONS" -gt 200 ]; then
-    echo "ALERT: Possible network scan detected ($CONNECTIONS connections)"
-fi
+echo "network_connections $CONNECTIONS" > $METRIC_FILE

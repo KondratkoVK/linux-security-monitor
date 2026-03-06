@@ -1,10 +1,10 @@
 #!/bin/bash
 
 LOG="/var/log/auth.log"
-THRESHOLD=10
+METRIC_FILE="/home/creator/linux-security-monitor/metrics/ssh_bruteforce.prom"
 
 ATTEMPTS=$(grep "Failed password" $LOG | tail -n 100 | wc -l)
 
-if [ "$ATTEMPTS" -gt "$THRESHOLD" ]; then
-    echo "ALERT: Possible SSH brute force detected ($ATTEMPTS attempts)"
-fi
+echo "# HELP ssh_failed_logins Number of failed SSH login attempts" > $METRIC_FILE
+echo "# TYPE ssh_failed_logins gauge" >> $METRIC_FILE
+echo "ssh_failed_logins $ATTEMPTS" >> $METRIC_FILE
