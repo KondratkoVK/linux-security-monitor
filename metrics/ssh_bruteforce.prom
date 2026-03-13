@@ -1,3 +1,2 @@
-# HELP ssh_failed_logins Number of failed SSH login attempts
+# HELP ssh_failed_logins Failed SSH login attempts per IP in last 2 minutes
 # TYPE ssh_failed_logins gauge
-ssh_failed_logins 0

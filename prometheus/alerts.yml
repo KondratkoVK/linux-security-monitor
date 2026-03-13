@@ -1,0 +1,21 @@
+groups:
+- name: linux-security-alerts
+  rules:
+
+  - alert: HighCPUUsage
+    expr: 100 - (avg by(instance)(rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100) > 80
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "High CPU usage"
+      description: "CPU usage is above 80%"
+
+  - alert: SSHBruteForce
+    expr: ssh_failed_logins > 1
+    for: 10s
+    labels:
+      severity: warning
+    annotations:
+      summary: "🚨 SSH Brute Force Detected"
+      description: "IP {{ $labels.ip }} made {{ $value }} failed login attempts"
